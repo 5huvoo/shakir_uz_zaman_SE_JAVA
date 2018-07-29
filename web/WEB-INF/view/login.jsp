@@ -1,25 +1,28 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <html>
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login Page</title>
+  <head>
+
+ < meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Login Confirming </title>
 
 </head>
 
 <body>
 
-   <%! String userdbName;
+<%! String userdbName;
+
 String userdbPsw;
-String dbUsertype;
+
+String dbid;
 
 %>
 
 <%
-
-Connection con= null;
 
 PreparedStatement ps = null;
 
@@ -36,25 +39,23 @@ String user = "root";
 String dbpsw = "1212";
 
 
-String sql = "select * from admin where name=? and password=?";
+
+String sql = "select * from admin where name=? and password=? and id=?";
+
+
 
 String name = request.getParameter("name");
-
+out.println(name);
 String password = request.getParameter("password");
 
+String id = request.getParameter("id");
 
+out.println("before connection\n");
 
-
-if((!(name.equals(null) || name.equals("")) && !(password.equals(null) || 
-password.equals(""))))
-
-{
-
-try{
 
 Class.forName(driverName);
 
-con = DriverManager.getConnection(url, user, dbpsw);
+Connection con = DriverManager.getConnection(url, user, dbpsw);
 
 ps = con.prepareStatement(sql);
 
@@ -62,64 +63,30 @@ ps.setString(1, name);
 
 ps.setString(2, password);
 
+ps.setString(3, id);
+
 rs = ps.executeQuery();
 
-if(rs.next())
+out.println("before connection\n");
+if(rs.next())  { 
 
-{ 
+       userdbName = rs.getString("name");
+       userdbPsw = rs.getString("password");
+       dbid = rs.getString("id");
 
-userdbName = rs.getString("name");
+       
+       if(name.equals(userdbName) && password.equals(userdbPsw) && id.equals(dbid))
+          {
+           // session.setAttribute("name",userdbName);
+             //session.setAttribute("usertype", dbid); 
+               response.sendRedirect("view/welcome.jsp"); 
+            } 
+               }
+else {
+        response.sendRedirect("error.jsp");
+        rs.close();
+        ps.close(); }
 
-userdbPsw = rs.getString("password");
-
-dbUsertype = rs.getString("usertype");
-
-if(name.equals(userdbName) && password.equals(userdbPsw))
-
-{
-
-session.setAttribute("name",userdbName);
-
-response.sendRedirect("welcome.jsp"); 
-
-} 
-
-}
-
-else
-
- response.sendRedirect("error.jsp");
-
- rs.close();
-
-   ps.close(); 
-
-}
-
-catch(SQLException sqe)
-
-{
-
-out.println(sqe);
-
-} 
-
-}
-
-else
-
-{
-
-%>
-
-<center><p style="color:red">Error In Login</p></center>
-
-<% 
-
-getServletContext().getRequestDispatcher("/home.jsp").include(request, 
-response);
-
-}
 
 %>
 

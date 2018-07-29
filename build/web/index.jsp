@@ -19,9 +19,11 @@
             <div id="widgetBar">
 
         <div class="headerWidget">
-            Simple Ecommerce Website
-        </div>
+            <a href="home">Login as Admin </a>
+            <a href="updateInfo">Show All product </a>
 
+            
+        </div>
        
 
     </div>
@@ -62,8 +64,7 @@
                  <hr>
     <p id="footerText">SE_JAVA PROJECT</p>
             </div>
-            
-            
+                        
         </div>
            
     </body>

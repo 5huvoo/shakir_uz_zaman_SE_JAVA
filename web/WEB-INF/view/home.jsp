@@ -15,7 +15,7 @@ String url = "jdbc:mysql://localhost:3306/ecom";
 String user = "root";
 String password = "1212";
 
-String sql = "select Usertype";
+String sql = "select id from admin";
 
 try {
 
@@ -26,29 +26,29 @@ try {
 %>
 
 <form method="post" action="login.jsp">
-<center><h2 style="color:green">JSP Login Example</h2></center>
+<center><h2> Login Page</h2></center>
 <table border="1" align="center">
 <tr>
-  <td>Enter Your Name :</td>
+  <td>Name(shuvo) :</td>
   <td><input type="text" name="name"/></td>
 </tr>
 
 <tr>
-<td>Enter Your Password :</td>
+<td>Password(12345678) :</td>
 <td><input type="password" name="password"/></td>
 </tr>
 
 <tr>
-<td>Select UserType</td>
-<td><select name="usertype">
+<td>Select ID</td>
+<td><select name="id">
 <option value="select">select</option>
 
 <% while(rs.next())
 { 
-String usertype = rs.getString("usertype");
+String id = rs.getString("id");
 %>
 
-<option value=<%=usertype%>><%=usertype%></option>
+<option value=<%=id%>><%=id%></option>
 
 <% 
  }
@@ -64,7 +64,10 @@ catch(SQLException sqe)
 <tr>
 <td></td>
 <td><input type="submit" value="submit"/></td>
+
+
 </table>
+<a align="center" href="welcome">if login failed , please continue here,,  </a>
 </form>
 </body>
 </html>

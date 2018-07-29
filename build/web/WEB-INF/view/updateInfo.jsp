@@ -22,22 +22,22 @@
      
     <div>
         <table border="1" cellpadding="1">
-            <caption><h2>List of Products</h2></caption>
+            <caption><h2> Products</h2></caption>
             <tr>
-                <th>ID</th>
+                
                 <th>Name</th>
                 <th>Price</th>
                 <th>Description</th>
-                <th>Date</th>
+                
                 <th>Cateory</th>
             </tr>
             <c:forEach var="user" items="${listUsers.rows}">
                 <tr>
-                    <td><c:out value="${user.id}" /></td>
+                   
                     <td><c:out value="${user.name}" /></td>
                     <td><c:out value="${user.price}" /></td>
                     <td><c:out value="${user.description}" /></td>
-                    <td><c:out value="${user.time}" /></td>
+                    
                     <td><c:out value="${user.category}" /></td>
                 </tr>
             </c:forEach>
