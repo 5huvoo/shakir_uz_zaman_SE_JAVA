@@ -1,0 +1,26 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/ecommerce.css">
+        <title>Simple Ecommerce Website</title>
+    </head>
+    <body>
+       
+       <div id="main">
+        <div id="header">
+            <div id="widgetBar">
+
+        <div class="headerWidget">
+            Simple Ecommerce Website
+        </div>
+
+       
+
+    </div>
+ 
+            <img src="#" id="Simple Ecommerce Website " alt="Simple Ecommerce">
+        </div>
+
+        
